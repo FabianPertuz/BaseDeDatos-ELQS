@@ -1,0 +1,400 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fundamentos de Bases de Datos</title>
+</head>
+
+<body>
+    <header>
+        <h1>Bases de Datos</h1>
+        <nav>
+            <a href="#datos">¿Qué son los datos?</a>
+            <a href="#bd">¿Qué son las bases de datos?</a>
+            <a href="#representacion">Representaciones conceptuales</a>
+            <a href="#cuestionario">¡Ponte a prueba!</a>
+        </nav>
+    </header>
+    <main>
+
+        <section id="datos" class="section">
+            <h2>¿Qué son los datos?</h2>
+            <div class="content">
+                <p>
+                    Los <strong>datos</strong> son hechos, cifras o descripciones que representan información sobre
+                    el mundo real, acerca de personas, objetos, eventos o situaciones. Representan información
+                    básica y sin procesar que, por sí sola, no tiene un significado completo hasta que se organiza y
+                    analiza.<br>
+                </p>
+                <div class="flex">
+                    <p>
+                        <span class="highlight">"Juan", 25 años, "México"</span> son datos sobre una persona.<br><br>
+                        <span class="highlight">"Laptop", 1200 dólares, "Electrónica"</span> son datos sobre un
+                        producto.<br><br>
+                        <span class="highlight">"Madrid", "España"</span> son datos sobre una ciudad.<br><br>
+                        <span class="highlight">"Fútbol", "Deporte"</span> son datos sobre una actividad.
+                    </p>
+                    <img src="./IMG/dato.png" alt="Datos" class="img-wrapper" onclick="rediccionar()" id="1">
+                    <div class="mensaje-hover">¡Click para más información!</div>
+                </div>
+            </div>
+        </section>
+
+        <section id="bd" class="section">
+            <h2>¿Qué son las bases de datos?</h2>
+            <div class="content">
+                <p>
+                    Una <strong>base de datos</strong> es un sistema organizado para almacenar, gestionar y recuperar
+                    datos de manera eficiente. Permite a los usuarios y aplicaciones acceder a grandes volúmenes de
+                    información de forma rápida y segura, facilitando la toma de decisiones y el análisis de datos.
+                </p>
+                <div class="flex">
+                    <p>
+                        Imagina una biblioteca digital donde puedes buscar libros por título, autor o género. Cada libro
+                        es un dato almacenado en la base de datos, y puedes acceder a él fácilmente.<br><br>
+                        Las bases de datos son fundamentales en aplicaciones como redes sociales, sistemas bancarios,
+                        tiendas en línea y más.
+                    </p>
+                    <img src="./IMG/bd.png" alt="Base de Datos" class="img-wrapper" onclick="rediccionar()" id="2">
+                    <div class="mensaje-hover">¡Click para más información!</div>
+                </div>
+            </div>
+            <h3>Sistemas Gestores de Bases de Datos (SGBD)</h3>
+            <div class="content">
+                <p>
+                    Un <strong>Sistema Gestor de Bases de Datos (SGBD)</strong> es un software que permite la creación,
+                    administración y manipulación de bases de datos. Proporciona herramientas para definir la estructura
+                    de
+                    la base de datos, insertar, actualizar y eliminar datos, así como realizar consultas para recuperar
+                    información.
+                </p>
+                <p>
+                    Los <strong>SGBD</strong> permiten a los usuarios interactuar con la base de datos a través de un
+                    lenguaje de
+                    consulta, como SQL (Structured Query Language). Esto facilita la recuperación y manipulación de
+                    datos sin necesidad de conocer la estructura interna de la base de datos.
+                </p>
+            </div>
+            <img src="./IMG/SGBD.png" alt="SGBD" class="img">
+            <div class="mensaje-hover2">MySQL, PostgreSQL, Oracle, SQL Server y SQLite son ejemplos de SGBD</div>
+            <h3>Bases de datos relacionales</h3>
+            <div class="content">
+                <p>
+                    Las <strong>bases de datos relacionales</strong> son un tipo de base de datos que organiza los datos
+                    en tablas relacionadas entre sí. Cada tabla contiene filas (registros) y columnas (campos), donde
+                    cada
+                    fila representa un dato único y cada columna define un atributo del dato, y se encuentran
+                    relacionadas
+                    mediante claves primarias y foráneas.
+                </p>
+
+                <div class="flex">
+                    <p>
+                        Por ejemplo, una tabla de "Clientes" puede estar relacionada con una tabla de "Pedidos" a través
+                        de un campo común, como el ID del cliente.
+                    </p>
+                    <table class="tabla">
+                        <thead>
+                            <tr>
+                                <th>Clientes</th>
+                                <th>Pedidos</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td class="underline">ID Cliente</td>
+                                <td class="underline">ID Pedido</td>
+                            </tr>
+                            <tr>
+                                <td>Nombre</td>
+                                <td>ID Cliente</td>
+                            </tr>
+                            <tr>
+                                <td>Email</td>
+                                <td>Fecha Pedido</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <p>
+                    Las <strong>Claves (llaves o keys)</strong> son atributos que se utilizan para identificar de manera
+                    única cada registro en una tabla. Existen dos tipos principales de claves:
+                </p>
+                <ul>
+                    <li><strong>Clave primaria:</strong> Es un atributo que identifica de manera única cada fila en una
+                        tabla. No puede haber dos filas con el mismo valor en la clave primaria.</li>
+                    <p><em>Ejemplo:</em> En una tabla de "Usuarios", el <span class="highlight">ID de Usuario</span>
+                        podría ser la clave primaria.</p>
+                    <li><strong>Clave foránea:</strong> Es un atributo que crea una relación entre dos tablas. Se
+                        refiere a la clave primaria de otra tabla, permitiendo así establecer vínculos entre los datos.
+                    </li>
+                    <p><em>Ejemplo:</em> En una tabla de "Pedidos", el <span class="highlight">ID de Cliente</span>
+                        podría ser una clave foránea que se refiere al <span class="highlight">ID de Usuario</span> en
+                        la tabla de "Usuarios".</p>
+                </ul>
+
+                <div class="flex">
+                    <table class="tabla">
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Nombre</th>
+                                <th>Email</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>1</td>
+                                <td>Alice</td>
+                                <td>alice@example.com</td>
+                            </tr>
+                            <tr>
+                                <td>2</td>
+                                <td>Bob</td>
+                                <td>bob@example.com</td>
+                            </tr>
+                            <tr>
+                                <td>3</td>
+                                <td>Charlie</td>
+                                <td>charlie@example.com</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <table class="tabla">
+                        <thead>
+                            <tr>
+                                <th>ID Pedido</th>
+                                <th>ID Usuario</th>
+                                <th>Fecha Pedido</th>
+                                <th>Estado</th>
+                                <th>Importe Total</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>101</td>
+                                <td>1</td>
+                                <td>15/01/2025</td>
+                                <td>Enviado</td>
+                                <td>$50.00</td>
+                            </tr>
+                            <tr>
+                                <td>102</td>
+                                <td>2</td>
+                                <td>16/01/2025</td>
+                                <td>En preparación</td>
+                                <td>$30.00</td>
+                            </tr>
+                            <tr>
+                                <td>103</td>
+                                <td>3</td>
+                                <td>17/01/2025</td>
+                                <td>Enviado</td>
+                                <td>$40.00</td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                </div>
+
+                <div class="content">
+                    <p>En estas dos tablas podemos identificar las claves primarias y foráneas que establecen las
+                        relaciones entre las entidades. En la tabla de "Usuarios", el <span class="highlight">ID de
+                            Usuario</span> es la clave primaria, mientras que en la tabla de "Pedidos", el <span
+                            class="highlight">ID de Usuario</span> actúa como clave foránea, vinculando los pedidos a
+                        los usuarios correspondientes. </p>
+                </div>
+
+            </div>
+        </section>
+
+        <section id="representacion" class="section">
+            <h2>Diseño y Representación de Bases de Datos</h2>
+            <div class="content">
+
+                <p>
+                    El diseño implica definir la estructura de la base de datos, las relaciones entre las
+                    tablas y los tipos de datos que se almacenarán. La representación conceptual, como los diagramas
+                    ER
+                    (Entidad-Relación), ayuda a visualizar estas relaciones y facilita la comunicación entre los
+                    desarrolladores y los usuarios. <br><br>
+                    Un buen diseño asegura que la base de datos sea eficiente,
+                    escalable y fácil de mantener.
+                </p>
+
+            </div>
+
+            <h3>Diagramas ER (Entidad-Relación)</h3>
+            <div class="content">
+                <p>
+                    Los <strong>diagramas ER</strong> son herramientas visuales que representan las entidades, sus
+                    atributos y las relaciones entre ellas en una base de datos. Son fundamentales para el diseño y la
+                    comprensión de la estructura de una base de datos.
+                </p>
+            </div>
+            <img src="./IMG/diagramaER.png" alt="Diagrama ER" class="img2" onclick="rediccionar()" id="3">
+            <div class="mensaje-hover2">Haz click para ver mas ejemplos</div>
+            <h3>Componentes de un Diagrama ER</h3>
+            <div>
+                <p>
+                    Un diagrama ER consta de varios componentes clave:
+                </p>
+                <ul>
+                    <li><strong>Entidades:</strong> Representan objetos o conceptos del mundo real (por ejemplo,
+                        Cliente, Pedido). Se representan como rectángulos.</li>
+                    <li><strong>Atributos:</strong> Características de las entidades (por ejemplo, Nombre, Fecha de
+                        Pedido). Se representan como óvalos.</li>
+                    <li><strong>Relaciones:</strong> Conexiones entre entidades (por ejemplo, un Cliente realiza un
+                        Pedido). Se representan como rombos.</li>
+                    <li><strong>Cardinalidad:</strong> Indica cuántas instancias de una entidad pueden estar asociadas
+                        con instancias de otra entidad (por ejemplo, un Cliente puede realizar muchos Pedidos).</li>
+                </ul>
+            </div>
+            <h3>Tipos de relaciones en un Diagrama ER</h3>
+            <div class="content">
+                <div class="flex">
+                    <ul>
+                        <li><strong>Relación uno a uno:</strong> Una instancia de una entidad A se relaciona con una
+                            única
+                            instancia de una entidad B.</li>
+                        <li><strong>Relación uno a muchos:</strong> Una instancia de una entidad A se relaciona con
+                            múltiples instancias de una entidad B.</li>
+                        <li><strong>Relación muchos a muchos:</strong> Múltiples instancias de una entidad A se
+                            relacionan
+                            con múltiples instancias de una entidad B.</li>
+                    </ul>
+
+                </div>
+
+                <img src="./IMG/relaciones.png" alt="Relaciones" class="img3">
+
+            </div>
+            <h3>¿Como hacer un Diagrama ER?</h3>
+            <div>
+                <p>
+                    El proceso de creación de un diagrama ER implica los siguientes pasos:
+                </p>
+                <ol>
+                    <li><strong>Identificación de entidades:</strong> Determina las entidades relevantes para el sistema.</li>
+                    <li><strong>Definición de atributos:</strong> Especifica los atributos de cada entidad.</li>
+                    <li><strong>Establecimiento de relaciones:</strong> Define cómo se relacionan las entidades entre sí.</li>
+                    <li><strong>Determinación de cardinalidad:</strong> Establece la cardinalidad de las relaciones.</li>
+                </ol>
+            </div>
+            <div>
+                <p>
+                    Vamos a hacer un diagrama ER sencillo para una tienda en línea que vende productos. Identificamos las
+                    entidades principales: <span class="highlight">Cliente</span>, <span class="highlight">Producto</span> y
+                    <span class="highlight">Pedido</span>. Luego, definimos los atributos de cada entidad:
+                </p>
+                <br>
+                <ul>
+                    <li><strong>Cliente:</strong> ID_Cliente, Nombre, Email, Teléfono</li>
+                    <li><strong>Producto:</strong> ID_Producto, Nombre, Descripción, Precio</li>
+                    <li><strong>Pedido:</strong> ID_Pedido, Fecha, Total, ID_Cliente</li>
+                </ul>
+                <p>
+                    A continuación, establecemos las relaciones entre las entidades:
+                </p>
+                <ul>
+                    <li>Un Cliente puede realizar muchos Pedidos (relación uno a muchos).</li>
+                    <li>Un Pedido puede contener muchos Productos (relación muchos a muchos).</li>
+                </ul>
+                <p>
+                    Finalmente, determinamos la cardinalidad de las relaciones:
+                </p>
+                <ul>
+                    <li>Un Cliente puede tener cero o más Pedidos.</li>
+                    <li>Un Pedido debe tener al menos un Producto.</li>
+                    <li>Un Producto puede estar en cero o más Pedidos.</li>
+                </ul>
+                <p>
+                    Con esto, hemos completado el diseño de nuestro diagrama ER para la tienda en línea.
+                </p>
+                <img src="./IMG/diagrama_ER.png" alt="Diagrama ER" class="img3">
+                <p>Vamos a ver como quedaria representado en un diagrama relacional:</p>
+                <img src="./IMG/diagrama_ERR.png" alt="Diagrama Relacional" class="img3">
+            </div>
+
+        </section>
+        <hr>
+        <br>
+        <section id="cuestionario" class="section">
+            <h2>¡PONTE A PRUEBA!</h2>
+            <form id="quiz-form">
+                <div class="quiz-question">
+                    <p>1. ¿Qué es un dato?</p>
+                    <label><input type="radio" name="q1" value="a"> Un hecho o cifra que representa
+                        información</label><br>
+                    <label><input type="radio" name="q1" value="b"> Un conjunto de tablas</label><br>
+                    <label><input type="radio" name="q1" value="c"> Una relación entre entidades</label>
+                </div>
+                <div class="quiz-question">
+                    <p>2. ¿Para qué sirve una base de datos?</p>
+                    <label><input type="radio" name="q2" value="a"> Almacenar y organizar datos</label><br>
+                    <label><input type="radio" name="q2" value="b"> Solo para dibujar diagramas</label><br>
+                    <label><input type="radio" name="q2" value="c"> Para crear imágenes</label>
+                </div>
+                <div class="quiz-question">
+                    <p>3. ¿Qué representa una <strong>entidad</strong> en un diagrama ER?</p>
+                    <label><input type="radio" name="q3" value="a"> Una característica de un dato</label><br>
+                    <label><input type="radio" name="q3" value="b"> Un objeto del mundo real</label><br>
+                    <label><input type="radio" name="q3" value="c"> Una conexión entre tablas</label>
+                </div>
+                <div class="quiz-question">
+                    <p>4. ¿Qué es un diagrama ER?</p>
+                    <label><input type="radio" name="q4" value="a"> Un tipo de gráfico de barras</label><br>
+                    <label><input type="radio" name="q4" value="b"> Una representación visual de entidades y relaciones</label><br>
+                    <label><input type="radio" name="q4" value="c"> Un esquema de base de datos en texto</label>
+                </div>
+                <div class="quiz-question">
+                    <p>5. ¿Qué es una clave primaria?</p>
+                    <label><input type="radio" name="q5" value="a"> Un atributo que identifica de manera única cada fila en una tabla</label><br>
+                    <label><input type="radio" name="q5" value="b"> Un atributo que relaciona dos tablas</label><br>
+                    <label><input type="radio" name="q5" value="c"> Un tipo de dato en una base de datos</label>
+                </div>
+                <div class="quiz-question">
+                    <p>6. ¿Qué es una clave foránea?</p>
+                    <label><input type="radio" name="q6" value="a"> Un atributo que identifica de manera única cada fila en una tabla</label><br>
+                    <label><input type="radio" name="q6" value="b"> Un atributo que crea una relación entre dos tablas</label><br>
+                    <label><input type="radio" name="q6" value="c"> Un tipo de dato en una base de datos</label>
+                </div>
+                <div class="quiz-question">
+                    <p>7. ¿Qué es una relación uno a muchos?</p>
+                    <label><input type="radio" name="q7" value="a"> Una relación donde una instancia de una entidad A se relaciona con una única instancia de una entidad B</label><br>
+                    <label><input type="radio" name="q7" value="b"> Una relación donde una instancia de una entidad A se relaciona con múltiples instancias de una entidad B</label><br>
+                    <label><input type="radio" name="q7" value="c"> Una relación donde múltiples instancias de una entidad A se relacionan con múltiples instancias de una entidad B</label>
+                </div>
+                <div class="quiz-question">
+                    <p>8. ¿Qué es una relación muchos a muchos?</p>
+                    <label><input type="radio" name="q8" value="a"> Una relación donde una instancia de una entidad A se relaciona con una única instancia de una entidad B</label><br>
+                    <label><input type="radio" name="q8" value="b"> Una relación donde una instancia de una entidad A se relaciona con múltiples instancias de una entidad B</label><br>
+                    <label><input type="radio" name="q8" value="c"> Una relación donde múltiples instancias de una entidad A se relacionan con múltiples instancias de una entidad B</label>
+                </div>
+                <div class="quiz-question">
+                    <p>9. ¿Qué es un atributo en un diagrama ER?</p>
+                    <label><input type="radio" name="q9" value="a"> Una característica de una entidad</label><br>
+                    <label><input type="radio" name="q9" value="b"> Una relación entre dos entidades</label><br>
+                    <label><input type="radio" name="q9" value="c"> Un tipo de dato en una base de datos</label>
+                </div>
+                <div class="quiz-question">
+                    <p>10. ¿Qué es la cardinalidad en un diagrama ER?</p>
+                    <label><input type="radio" name="q10" value="a"> El número de entidades en una base de datos</label><br>
+                    <label><input type="radio" name="q10" value="b"> El número de relaciones entre entidades</label><br>
+                    <label><input type="radio" name="q10" value="c"> El número de instancias de una entidad que pueden estar asociadas con instancias de otra entidad</label>
+                </div>
+                <button type="submit">Ver resultados</button>
+            </form>
+            <div id="quiz-result"></div>
+        </section>
+    </main>
+    <footer>
+        <p>Brotherhoods · 2025</p>
+    </footer>
+    
+
+</body>
+
+</html>
