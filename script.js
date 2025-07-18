@@ -110,13 +110,26 @@ document.addEventListener('DOMContentLoaded', function () {
 });
 
 function initializeApp() {
+    initScrollAnimations();
+
+    setupNavigationEvents();
 
     if (document.getElementById('cuestionario') && document.getElementById('cuestionario').classList.contains('active')) {
         initQuiz();
     }
 }
 
+function setupNavigationEvents() {
+    document.addEventListener('click', function (e) {
+        const nav = document.querySelector('nav');
+        const menuToggle = document.querySelector('.mobile-menu-toggle');
 
+        if (nav && menuToggle && nav.classList.contains('active')) {
+            if (!nav.contains(e.target) && !menuToggle.contains(e.target)) {
+                nav.classList.remove('active');
+            }
+        }
+    });
 
     document.addEventListener('keydown', function (e) {
         const cuestionarioPage = document.getElementById('cuestionario');
@@ -144,10 +157,51 @@ function initializeApp() {
                 break;
         }
     });
+}
 
+function showPage(pageId) {
+    try {
+        const pages = document.querySelectorAll('.page');
+        pages.forEach(page => {
+            page.classList.remove('active');
+            page.classList.add('hidden');
+        });
 
+        const targetPage = document.getElementById(pageId);
+        if (targetPage) {
+            targetPage.classList.add('active');
+            targetPage.classList.remove('hidden');
+        }
 
-// Redireccionar (función original)
+        const nav = document.querySelector('nav');
+        if (nav) {
+            nav.classList.remove('active');
+        }
+
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+
+        if (pageId === 'cuestionario') {
+            setTimeout(() => {
+                initQuiz();
+            }, 100);
+        }
+
+        setTimeout(() => {
+            initScrollAnimations();
+        }, 200);
+
+    } catch (error) {
+        console.error('Error al cambiar de página:', error);
+    }
+}
+
+function toggleMobileMenu() {
+    const nav = document.querySelector('nav');
+    if (nav) {
+        nav.classList.toggle('active');
+    }
+}
+
 function redirigir(id) {
     const urls = {
         1: "https://www.youtube.com/watch?v=4wo_wZWk_UM",
@@ -219,7 +273,12 @@ function loadQuestion() {
 
     updateQuestionInfo();
 
-    
+    if (typeof gsap !== 'undefined') {
+        gsap.fromTo('.quiz-question',
+            { opacity: 0, y: 20 },
+            { opacity: 1, y: 0, duration: 0.5, ease: "power2.out" }
+        );
+    }
 }
 
 function selectAnswer(answerIndex) {
@@ -418,10 +477,10 @@ function showResults(score, results) {
                     
                     <div class="text-center mt-10 space-y-4">
                         <button onclick="restartQuiz()" class="bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-8 rounded-full transition-all duration-300 transform hover:scale-105 shadow-lg mr-4">
-                            Reintentar Quiz
+                             Reintentar Quiz
                         </button>
                         <button onclick="showPage('home')" class="bg-gray-600 hover:bg-gray-700 text-white font-bold py-3 px-8 rounded-full transition-all duration-300 transform hover:scale-105 shadow-lg">
-                            Volver al Inicio
+                             Volver al Inicio
                         </button>
                     </div>
                 </div>
@@ -430,6 +489,7 @@ function showResults(score, results) {
     if (quizResults) {
         quizResults.innerHTML = resultsHTML;
 
+        // Animar entrada de resultados
         if (typeof gsap !== 'undefined') {
             gsap.fromTo(quizResults.querySelector('.bg-white'),
                 { opacity: 0, scale: 0.9 },
@@ -456,3 +516,142 @@ function restartQuiz() {
 
     initQuiz();
 }
+
+function initScrollAnimations() {
+    if (typeof gsap === 'undefined') {
+        console.warn('GSAP no está disponible');
+        return;
+    }
+
+    try {
+        gsap.registerPlugin(ScrollTrigger);
+
+        ScrollTrigger.getAll().forEach(trigger => trigger.kill());
+
+        gsap.utils.toArray('.space-y-6, .space-y-8, .grid').forEach(section => {
+            gsap.fromTo(section,
+                { opacity: 0, y: 30 },
+                {
+                    opacity: 1,
+                    y: 0,
+                    duration: 0.8,
+                    ease: "power2.out",
+                    scrollTrigger: {
+                        trigger: section,
+                        start: "top 85%",
+                        end: "bottom 15%",
+                        toggleActions: "play none none none"
+                    }
+                }
+            );
+        });
+
+        gsap.utils.toArray('.img-clickable').forEach(img => {
+            gsap.fromTo(img,
+                { opacity: 0, scale: 0.9, rotateY: 15 },
+                {
+                    opacity: 1,
+                    scale: 1,
+                    rotateY: 0,
+                    duration: 0.8,
+                    ease: "back.out(1.2)",
+                    scrollTrigger: {
+                        trigger: img,
+                        start: "top 85%",
+                        end: "bottom 15%",
+                        toggleActions: "play none none none"
+                    }
+                }
+            );
+        });
+
+        gsap.utils.toArray('.tabla-custom, .tabla-full').forEach(table => {
+            gsap.fromTo(table,
+                { opacity: 0, x: -30 },
+                {
+                    opacity: 1,
+                    x: 0,
+                    duration: 0.8,
+                    ease: "power2.out",
+                    scrollTrigger: {
+                        trigger: table,
+                        start: "top 80%",
+                        end: "bottom 20%",
+                        toggleActions: "play none none none"
+                    }
+                }
+            );
+        });
+        gsap.utils.toArray('.bg-blue-50 .bg-white, .bg-green-50 .bg-white, .bg-orange-50 .bg-white').forEach(card => {
+            if (card.offsetHeight < 200) { // Solo elements pequeños
+                gsap.fromTo(card,
+                    { opacity: 0, y: 20 }, // Sin scale para evitar reflow
+                    {
+                        opacity: 1,
+                        y: 0,
+                        duration: 0.4, // Más rápido
+                        ease: "power2.out", // Menos intenso
+                        scrollTrigger: {
+                            trigger: card,
+                            start: "top 90%",
+                            toggleActions: "play none none none"
+                        }
+                    }
+                );
+            }
+        });
+
+        gsap.utils.toArray('h2, h3').forEach(title => {
+            gsap.fromTo(title,
+                { opacity: 0, y: -20 },
+                {
+                    opacity: 1,
+                    y: 0,
+                    duration: 0.6,
+                    ease: "power2.out",
+                    scrollTrigger: {
+                        trigger: title,
+                        start: "top 85%",
+                        end: "bottom 15%",
+                        toggleActions: "play none none none"
+                    }
+                }
+            );
+        });
+
+        ScrollTrigger.refresh();
+
+    } catch (error) {
+        console.error('Error en animaciones:', error);
+    }
+}
+
+window.addEventListener('resize', function () {
+    if (typeof ScrollTrigger !== 'undefined') {
+        ScrollTrigger.refresh();
+    }
+});
+
+window.addEventListener('error', function (e) {
+    console.error('Error capturado:', e.error);
+});
+
+window.addEventListener('load', function () {
+    if (typeof gsap === 'undefined') {
+        console.warn('GSAP no está disponible, las animaciones estarán deshabilitadas');
+    } else {
+        setTimeout(() => {
+            initScrollAnimations();
+        }, 100);
+    }
+});
+
+document.addEventListener('visibilitychange', function () {
+    if (typeof gsap !== 'undefined') {
+        if (document.hidden) {
+            gsap.globalTimeline.pause();
+        } else {
+            gsap.globalTimeline.resume();
+        }
+    }
+});
