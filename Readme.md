@@ -19,7 +19,7 @@
 
 ## 🎥 Video Explicativo
 
-**[▶️ Ver Video Demo Completo](www.youtube.com/watch?v=4j3E2-vMIf0&feature=youtu.be)**
+**[▶️ Ver Video Demo Completo](https://www.youtube.com/watch?v=4j3E2-vMIf0)**
 *Duración: 5 minutos - Explicación completa del recurso y sus funcionalidades*
 
 ---
