@@ -19,8 +19,8 @@
 
 ## 🎥 Video Explicativo
 
-**[▶️ Ver Video Demo Completo](https://youtube.com/watch?v=tu-video-id)**
-*Duración: 10 minutos - Explicación completa del recurso y sus funcionalidades*
+**[▶️ Ver Video Demo Completo](www.youtube.com/watch?v=4j3E2-vMIf0&feature=youtu.be)**
+*Duración: 5 minutos - Explicación completa del recurso y sus funcionalidades*
 
 ---
 
